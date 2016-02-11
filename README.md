@@ -19,7 +19,9 @@ super short abstract:
 * pooling operators are for local invariance
 * 1 layer of convolutions is for learning 1 one-parameter-group invariance (or rather: convolutions leave already learned group invariance untouched and the training learns the invariance)
 * deep networks are basically doing group factorisation that’s stable w.r.t. perturbations of the group
+
 my notes:
+
 * the problem: find signal representation $\Phi$ (e.g. classifier) that is
 	* invariant under some transformation group $G$ (e.g. rotation), i.e. $\Phi(x)=\Phi(gx)$ for all $g\in G$ and
 	* is “stable” to perturbations (i.e. transformations $h$ that are “close” to the transformation group $G$ which can be thought of as a low dimensional manifold), i.e. $||\Phi(\varphi(h,x))-\Phi(x)||\leq C||x||d(h,G)$
