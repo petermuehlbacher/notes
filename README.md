@@ -36,3 +36,15 @@ my notes:
 * how does this help?
   * using the change of basis given by $O$ we can write the group action as some linear phase change; if we also apply the inverse Fourier transform this becomes a translation operator $T_s:z(\cdot)\mapsto z(\cdot -s)$, which lets us measure deformations ($\tilde T_s: z(\cdot)\mapsto z(\cdot -\tau(s))$ such that $d(\tilde T_s,T_s)\ll 1$) in a convenient way by analyzing the regularity of $\tau$
   * thus the key to obtaining group invariant representations is not to find die eigenvectors of $A$ (yielding the change of basis given by $O$), but rather measurements that are “close” to diagonalising $A$ and are localised where deformations occur(?) - this can be done with convolutions with compactly supported filters
+
+# Properties of the Fourier transform
+* diagonalises the derivative (i.e. turns it into a multiplication operator if expressed in its basis), which in turn let’s us define pseudo-differential operators via non-polynomial symbols
+* Fourier transform is like a projection onto eigenspaces of Laplace operator → in a compact domain (with suitable regularity) those are discrete → get a sum = Fourier _series_
+	* using the above idea one can generalize Fourier transforms not only to higher dimensional setting and manifolds, but also to graph settings (see graph Laplacian)
+* translation = phase change (think of a shift by π/2 in 1D and what this does to the coefficients of a Fourier _series_)
+  * in a space-time metric (having signature 1,1,1,-1) we can “place” a particle at some point in space-time by multiplying the creation operator with some exponential in the right basis (i.e. the one of the Fourier transform) where the spatial part has the inverse sign of the time part because of this metric
+
+# Braess’ paradox (http://ist.ac.at/fileadmin/user_upload/pdfs/Talks/2016/02/Talk_Timme.pdf)
+* the paradox: given some (directed) graph with a flow (e.g. traffic network) removing edges could improve the “overall situation” (e.g. on average you do not drive as long as before if a street is closed)
+* note that this also implies the converse: adding a street doesn’t necessarily make the traffic situation better overall
+* one take on this paradox (from a dynamical systems point of view): knowing the capacity of all the edges and the nodes one gets a system of constraints for every closed loop in order to satisfy some stability condition, but if one introduces another edge that divides a circle in two we get two systems of constraints that may not be compatible → no more stable solution
