@@ -84,3 +84,7 @@ great paper for everybody who is interested in (yet not familiar with) category 
 # uses of 的 (中文)
 * possessive particle: 我的女 = my daughter
 * attributive (connecting adjective and noun): 红色的菜 = red vegetables 
+
+# http://arxiv.org/pdf/cond-mat/0611023v1.pdf
+* distribution of eigenvalues of the Hessian of a critical point is a shifted semicircle
+* e.g. global minimum → left of SCL is at 0, the bigger its energy, the more it is shifted to the left)
