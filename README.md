@@ -70,3 +70,17 @@ great text, you should read it!
 * “Another thing is that my ability to do any serious mathematics fluctuates greatly from day to day; sometimes I can think hard on a problem for an hour, other times I feel ready to type up the full details of a sketch that I or my coauthors already wrote, and other times I only feel qualified to respond to email and do errands, or just to take a walk or even a nap. I find it very helpful to organise my time to match this fluctuation: for instance, if I have a free afternoon, and feel inspired to do so, I might close my office door, shut off the internet, and begin typing on a languishing paper; or if not, I go and work on a week’s worth of email, referee a paper, write a blog article, or whatever else seems suited to my current levels of energy and enthusiasm. It is fortunate in mathematics that a large fraction of one’s work (with the notable exception of teaching, which one then has to build one’s schedule around) can be flexibly moved from one time slot to another in this manner. [A corollary to this is that one should deal with tasks before they become so urgent that they have to be done immediately, thus disrupting one’s time flexibility.]”
 * “A half-hearted system is probably worse than no system at all. A corollary to this is not to try to make an overly ambitious system ab nihilo that one is unlikely to follow faithfully; it is probably better to let such systems evolve over time.“
 * “Sometimes one should abandon one’s own rules and allow for serendipity. There have been many times, for instance, when I had planned to work on something during my lunch hour (grabbing something quick to eat), when I was interrupted by a colleague or visitor to go out to eat. It has often happened that I got a lot more out of that lunch (mathematically or otherwise) than I would have back at the office, though not in the way I would have anticipated.”
+
+# http://arxiv.org/pdf/1405.4537v1.pdf
+* def: stream is a map $\gamma$ from a totally ordered set $I$ to some state space
+* there is a canonical way to convert discrete streams to continuous paths (path: $I$ interval and some regularity conditions like right continuity)
+* from now on “wlog”: $\gamma:[J_-,J_+]\rightarrow E$ will continuously map an interval $J$ to some Banach space $E$
+* def: bounded $p$-variation ($p\geq 1$) iff $sup_{\dots<u_i < u_{i+1}<\dots\in J}\sum_i\|\gamma_{u_{i+1}}-\gamma_{u_i}\|^q <\infty$ for $q=1$ and $q=p$
+TO BE CONTINUED
+
+# http://math.ucr.edu/home/baez/rosetta.pdf
+great paper for everybody who is interested in (yet not familiar with) category theory - summary may follow
+
+# uses of 的 (中文)
+* possessive particle: 我的女 = my daughter
+* attributive (connecting adjective and noun): 红色的菜 = red vegetables 
