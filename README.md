@@ -125,3 +125,11 @@ why you want to use `[[None for j in xrange(3)] for i in xrange(3)]` instead of 
 * multidimensional DFT consists of iterated sums which commute → can write it as $F_{N_2}(F_{N_1}(X_{i,j})_{j=0}^{N_1-1})_{j=0}^{N_2-1}$
 * Vandermonde matrix = evaluation of a polynomial at points generating the Vandermonde matrix → upsampling = (e^2πinm/2N)_{n,m=0}^{n=N-1,m=2N-1} (Vandermonde matrix with twice as many rows as a square one → evaluates the polynomial described by the given vector at twice as many points of the unit circle (→ to convert a signal of frequency a to one with frequency b you first need to upsample it to LCM(a,b))
 * real signal x → DFT(x) has entries that are complex conjugated to each other (usually mirrored around half the length of the signal) since they are just the $L^2(\mathbb C)$ inner product $(\langle x,e_k\rangle)_k$
+
+# linearisation of a differential operator
+* used (i.a.) to define the symbol of a differential operator $D$
+* how to do it:
+  * usually linearize around a solution $\tilde u, D\tilde u=0$
+  * idea is to look at how $D$ behaves on functions $u$ that are close to the point one is linearising around (i.e. $\tilde u$), so one does the substitution $u=\tilde u+\varepsilon v$
+  * rearranging terms like a power series in $\varepsilon$ and using that $D\tilde u=0$ one gets equations with $\tilde u$ and $v$ which define an operator $A_{\tilde u}$ acting on $v$, which satisfies $A_{\tilde u}v = 0$ and is linear!
+* note that the linearisation depends on the solution just as the linearisation of a scalar valued function depends on the point $x_0$ one wants to linearize around and that the origin shifts accordingly, i.e. the input $v$ is much like $x-x_0$ and not $x$
