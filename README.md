@@ -27,21 +27,23 @@ my notes:
 	* is “stable” to perturbations (i.e. transformations $h$ that are “close” to the transformation group $G$ which can be thought of as a low dimensional manifold), i.e. $||\Phi(\varphi(h,x))-\Phi(x)||\leq C||x||d(h,G)$
 * approach: take convolutional networks and think of them in terms of signal processing, i.e.
   * inputs $x\in X$ = signals $x\in L^2(\Omega)$
-  * convolution kernels = filter bank $\{\psi_\lambda\}_\lambda, \lambda\in\Lambda_1$
-  * the first layer maps $x(\cdot)\mapsto \{x*\psi_\lambda(\cdot)\}_\lambda =: z^{(1)}(\cdot,\lambda)$ (which is the set of **convolutions** with kernels $\psi_\lambda$ - think of them as some very localised bump functions, centered around points distributed in $\Omega_0$), applies some operator $M$ and then applies some **pooling operator** $P$, which, in terms of signal processing, can be thought of as low-pass filter, followed by downsampling (see Wikipedia for a quick explanation)
+  * convolution kernels = filter bank $\{\psi_\lambda\}_\lambda, \lambda\in\Lambda_1$, e.g. for a filter bank corresponding to an expansion in a funtions Fourier series, convolution with $\psi_\lambda$ yields $\langle x,e^{2\pi i\lambda/N}$
+  * the first layer maps $x(\cdot)\mapsto \{x*\psi_\lambda(\cdot)\}_\lambda =: z^{(1)}(\cdot,\lambda)$ (which is the set of **convolutions** with kernels $\psi_\lambda$, applies some operator $M$ (the **activation function** which acts piece-wise) and then applies some **pooling operator** $P$, which, in terms of signal processing, can be thought of as low-pass filter (low-pass because chosing max-pooling can be thought of as eliminating high frequency oscillations), followed by downsampling (see Wikipedia for a quick explanation)
 * the special case of one-parameter transformation groups $G=\{U_t\}_{t\in\mathbb R}, U_t\in L^2(\Omega), \lim U_t z = U_{t_0}z, U_{t+s}=U_tU_s$ (e.g. translations, frequency transpositions, dilations):
-  * due to Stone’s theorem there is some s.a. $A$ such that $U_t=\exp(itA)$
-  * in the finite dimensional case we can write $U_tz = O^{-1}\text{diag}(\exp(it\omega) Oz(\omega))$, implying that the group action is a linear phase change in the basis that diagonalizes $A$
-  * hence, a representation that is invariant under the action of $\{U_t\}_t$ can be obtained with a single layer of a fully connected(?) neural network
-* how does this help?
+  * we want to find a canonical way of describing the action of a group element of a one-parameter family; this is given by Stone’s theorem which (under reasonable assumptions) states that there is some s.a. $A$ such that $U_t=\exp(itA)$ (spectral theorem!)
+  * since $A$ is self adjoint there is a change of basis given by $O$ that diagonalizes $A$, i.e. (in the finite dimensional case) $OAO^{-1} = \text{diag}(\lambda_1,\dots,\lambda_n)$
+  * hence we can write the group action $U_tz = O^{-1}(\exp(it\text{diag}(\lambda_1,\dots,\lambda_n))Oz)$, implying that the group action is a linear phase change in the basis that diagonalizes $A$
+  * choosing $M$ to take the complex modulus yields a representation that is invariant under the action of $\{U_t\}_t$
+* “defining” perturbations of group elements:
   * using the change of basis given by $O$ we can write the group action as some linear phase change; if we also apply the inverse Fourier transform this becomes a translation operator $T_s:z(\cdot)\mapsto z(\cdot -s)$, which lets us measure deformations ($\tilde T_s: z(\cdot)\mapsto z(\cdot -\tau(s))$ such that $d(\tilde T_s,T_s)\ll 1$) in a convenient way by analyzing the regularity of $\tau$
-  * thus the key to obtaining group invariant representations is not to find die eigenvectors of $A$ (yielding the change of basis given by $O$), but rather measurements that are “close” to diagonalising $A$ and are localised where deformations occur(?) - this can be done with convolutions with compactly supported filters
+<!--  * thus the key to obtaining group invariant representations is not to find die eigenvectors of $A$ (yielding the change of basis given by $O$), but rather measurements that are “close” to diagonalising $A$ and are localised where deformations occur(?) - this can be done with convolutions with compactly supported filters-->
+I do not quite understand how this motivates the use of filters(/kernels) acting locally for group factorisation, but as soon as I do this will be updated.
 
 # Properties of the Fourier transform
 * diagonalises the derivative (i.e. turns it into a multiplication operator if expressed in its basis), which in turn let’s us define pseudo-differential operators via non-polynomial symbols
 * Fourier transform is like a projection onto eigenspaces of Laplace operator → in a compact domain (with suitable regularity) those are discrete → get a sum = Fourier _series_
 	* using the above idea one can generalize Fourier transforms not only to higher dimensional setting and manifolds, but also to graph settings (see graph Laplacian)
-* translation = phase change (think of a shift by π/2 in 1D and what this does to the coefficients of a Fourier _series_)
+* translation = phase change (think of a shift in 1D and what this does to the coefficients of a Fourier _series_)
   * in a space-time metric (having signature 1,1,1,-1) we can “place” a particle at some point in space-time by multiplying the creation operator with some exponential in the right basis (i.e. the one of the Fourier transform) where the spatial part has the inverse sign of the time part because of this metric
 
 # Braess’ paradox (http://ist.ac.at/fileadmin/user_upload/pdfs/Talks/2016/02/Talk_Timme.pdf)
@@ -71,12 +73,14 @@ great text, you should read it!
 * “A half-hearted system is probably worse than no system at all. A corollary to this is not to try to make an overly ambitious system ab nihilo that one is unlikely to follow faithfully; it is probably better to let such systems evolve over time.“
 * “Sometimes one should abandon one’s own rules and allow for serendipity. There have been many times, for instance, when I had planned to work on something during my lunch hour (grabbing something quick to eat), when I was interrupted by a colleague or visitor to go out to eat. It has often happened that I got a lot more out of that lunch (mathematically or otherwise) than I would have back at the office, though not in the way I would have anticipated.”
 
+<!--
 # http://arxiv.org/pdf/1405.4537v1.pdf
 * def: stream is a map $\gamma$ from a totally ordered set $I$ to some state space
 * there is a canonical way to convert discrete streams to continuous paths (path: $I$ interval and some regularity conditions like right continuity)
 * from now on “wlog”: $\gamma:[J_-,J_+]\rightarrow E$ will continuously map an interval $J$ to some Banach space $E$
 * def: bounded $p$-variation ($p\geq 1$) iff $sup_{\dots<u_i < u_{i+1}<\dots\in J}\sum_i\|\gamma_{u_{i+1}}-\gamma_{u_i}\|^q <\infty$ for $q=1$ and $q=p$
 TO BE CONTINUED
+-->
 
 # http://math.ucr.edu/home/baez/rosetta.pdf
 great paper for everybody who is interested in (yet not familiar with) category theory - summary may follow
@@ -88,3 +92,36 @@ great paper for everybody who is interested in (yet not familiar with) category 
 # http://arxiv.org/pdf/cond-mat/0611023v1.pdf
 * distribution of eigenvalues of the Hessian of a critical point is a shifted semicircle
 * e.g. global minimum → left of SCL is at 0, the bigger its energy, the more it is shifted to the left)
+
+# asking yes/no questions (中文)
+* there are two ways of doing so, either with
+  * 吗: e.g. 吃飽了嗎？ (have you eaten?), or
+  * X不X: 你要不要去北京？ (Do you or don’t you want to go to Beijing?) which is equivalent to 你要去北京嗎？
+
+# past tense: 了 vs 过 (中文)
+* 过: applicable if action is repeatable and is finished
+* 了: applicable for events which started in the past and continue to the present
+* e.g. 她去过美国｡vs 她去美国了｡ (过→she is not there anymore, 了→she is still there)
+
+# expressing prior/posterior actions with 以前/以后 (中文)
+* as “previously”/“after”:
+  * 他以前住在美国｡ (He (previously) lived in America.)
+  * 他以后会去美国｡ or 以后他会去美国｡ (He will go to America (afterwards).) — note that 以后 can be before or after the subject!
+* relatively prior to/after something else:
+  * [action]以前[prior action], e.g. 他睡觉以前喜欢看书｡(He likes to read before going to bed. (literally – He sleep before, likes read.))
+  * [action]以后[later action], e.g. 他下课以后要回家吃饭｡(After class, he will return home to eat. (literally – He class is over after, going to return home eat a meal.))
+
+# http://math.stackexchange.com/questions/766479/what-is-spectrum-for-laplacian-in-mathbbrn, http://math.stackexchange.com/questions/790401/spectrum-of-laplace-operator
+two great articles covering why the spectrum of the Laplace operator (on $\mathbb R^N$) is $(-∞,0]$ which, by looking more closely, also explains why “unbounded domain” implies “uncountable basis of eigenfunctions”
+
+# http://cs231n.github.io/convolutional-networks/
+great introduction to convolutional neural networks
+
+# http://stackoverflow.com/questions/7536465/create-a-2d-array-with-a-nested-loop
+why you want to use `[[None for j in xrange(3)] for i in xrange(3)]` instead of `[[None]*3]*3`
+
+# DFT
+* DFT in $N$ dimensions can be written as $F_N=1/\sqrt N (\omega_N^{kl})_{k,l=0}^{N-1}$, where $\omega_N=e^{2\pi i/N}$ and this matrix is a Vandermonde matrix over the roots of unity
+* multidimensional DFT consists of iterated sums which commute → can write it as $F_{N_2}(F_{N_1}(X_{i,j})_{j=0}^{N_1-1})_{j=0}^{N_2-1}$
+* Vandermonde matrix = evaluation of a polynomial at points generating the Vandermonde matrix → upsampling = (e^2πinm/2N)_{n,m=0}^{n=N-1,m=2N-1} (Vandermonde matrix with twice as many rows as a square one → evaluates the polynomial described by the given vector at twice as many points of the unit circle (→ to convert a signal of frequency a to one with frequency b you first need to upsample it to LCM(a,b))
+* real signal x → DFT(x) has entries that are complex conjugated to each other (usually mirrored around half the length of the signal) since they are just the $L^2(\mathbb C)$ inner product $(\langle x,e_k\rangle)_k$
