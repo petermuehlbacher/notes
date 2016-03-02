@@ -74,12 +74,17 @@ great text, you should read it!
 * “Sometimes one should abandon one’s own rules and allow for serendipity. There have been many times, for instance, when I had planned to work on something during my lunch hour (grabbing something quick to eat), when I was interrupted by a colleague or visitor to go out to eat. It has often happened that I got a lot more out of that lunch (mathematically or otherwise) than I would have back at the office, though not in the way I would have anticipated.”
 
 <!--
+========================================================
+=====================YET TO WRITE=======================
+========================================================
 # http://arxiv.org/pdf/1405.4537v1.pdf
 * def: stream is a map $\gamma$ from a totally ordered set $I$ to some state space
 * there is a canonical way to convert discrete streams to continuous paths (path: $I$ interval and some regularity conditions like right continuity)
 * from now on “wlog”: $\gamma:[J_-,J_+]\rightarrow E$ will continuously map an interval $J$ to some Banach space $E$
 * def: bounded $p$-variation ($p\geq 1$) iff $sup_{\dots<u_i < u_{i+1}<\dots\in J}\sum_i\|\gamma_{u_{i+1}}-\gamma_{u_i}\|^q <\infty$ for $q=1$ and $q=p$
-TO BE CONTINUED
+========================================================
+===================TO BE CONTINUED======================
+========================================================
 -->
 
 # http://math.ucr.edu/home/baez/rosetta.pdf
@@ -127,9 +132,56 @@ why you want to use `[[None for j in xrange(3)] for i in xrange(3)]` instead of 
 * real signal x → DFT(x) has entries that are complex conjugated to each other (usually mirrored around half the length of the signal) since they are just the $L^2(\mathbb C)$ inner product $(\langle x,e_k\rangle)_k$
 
 # linearisation of a differential operator
+http://math.stackexchange.com/questions/1677181/how-do-you-linearize-a-differential-operator-to-get-its-symbol for an example
 * used (i.a.) to define the symbol of a differential operator $D$
 * how to do it:
   * usually linearize around a solution $\tilde u, D\tilde u=0$
   * idea is to look at how $D$ behaves on functions $u$ that are close to the point one is linearising around (i.e. $\tilde u$), so one does the substitution $u=\tilde u+\varepsilon v$
   * rearranging terms like a power series in $\varepsilon$ and using that $D\tilde u=0$ one gets equations with $\tilde u$ and $v$ which define an operator $A_{\tilde u}$ acting on $v$, which satisfies $A_{\tilde u}v = 0$ and is linear!
 * note that the linearisation depends on the solution just as the linearisation of a scalar valued function depends on the point $x_0$ one wants to linearize around and that the origin shifts accordingly, i.e. the input $v$ is much like $x-x_0$ and not $x$
+
+<!-- 
+========================================================
+=====================YET TO WRITE=======================
+========================================================
+# http://www-etud.iro.umontreal.ca/~sordonia/pdf/sigir2013_sordoni.pdf
+problem:
+======================================================== 
+=======================WRITE IT=========================
+========================================================
+-->
+
+# http://arxiv.org/pdf/1411.1792v1.pdf
+first few layers of CNNs with similar purposes tend to be very similar (Gabor filters) → can copy them
+
+# http://arxiv.org/pdf/1301.3583v4.pdf
+increasing the size of neural networks only yields diminishing returns
+
+# http://arxiv.org/pdf/1312.5851v5.pdf
+how to implement the convolutions of CNNs with the FFT (feasible for large number of feature maps)
+
+# green, white, black and Oolong tea
+http://cooking.stackexchange.com/questions/26002/what-is-the-difference-between-green-white-and-black-tea for quick introduction (also Oolong tea)
+* fermentation: green&white tea leaves are quickly heated (typically steamed in Japan, while pan-fired in China) after harvesting to reduce oxidation
+* white tea
+  * minimally processed to leave downy hair intact
+  * not oxidized → does not develop as much flavor, color, or caffeine
+* green tea
+  * history
+    * starting from 17th century (Europeans started importing tea) until mid 19th century green tea was about as popular as black tea (in Europe)
+    * originally (2000 bc) used as medicine in China
+    * in the 8th century 陸羽 (Lù Yǔ) wrote 茶經 (chájīng), the first known monograph on tea where he described tea being steamed and formed into tea bricks for storage and trade - to prepare tea one had to pulverize it before brewing → 抹茶 (matcha)
+    * only later it was established
+  * rolling wilted leaves breaking cell walls to speed release of aromatic substances
+* types of tea
+  * China
+    * 珠茶 (gunpowder): rolled into little round pellets (green or Oolong tea); shiny pellets indicate freshness, little pellets are considered a mark of higher quality tea
+    * 龙井茶 (Lóng Jǐng tea): renowned for its high quality
+    * 黄山毛峰 ((Huángshān) Máo Fēng): mild-flavored, very popular tea
+    * 茉莉花茶 (Jasmine tea): subtly sweet and highly fragrant, stored with blossoms to acquire their scent
+    * 白牡丹 (Bái mǔdān): one of the most well-known white teas
+  * Japan
+    * 煎茶 (Sencha): most popular tea in Japan (80°C, 1 min, 1.5 tablespoons (7-8 grams) per litre)
+    * 茎茶 (Kukicha): blend made of stems, stalks, and twigs (80°C, 40sec to 1min, 4 teaspoons per litre)
+    * 抹茶 (Matcha): mentioned above
+    * 玉露 (Gyokuro): grown under the shade rather than the full sun since the more sun, the more Catechin (bitter)
