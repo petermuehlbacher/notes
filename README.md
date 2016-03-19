@@ -145,7 +145,9 @@ http://math.stackexchange.com/questions/1677181/how-do-you-linearize-a-different
 =====================YET TO WRITE=======================
 ========================================================
 # http://www-etud.iro.umontreal.ca/~sordonia/pdf/sigir2013_sordoni.pdf
-problem:
+* problem: model dependencies of words
+  * either: need additional features (“computer”, “architecture” and “computer architecture” are completely different entries)
+  * or: model it as joint probabilities (less improvements than expected, huge computational effort)
 ======================================================== 
 =======================WRITE IT=========================
 ========================================================
@@ -185,3 +187,14 @@ http://cooking.stackexchange.com/questions/26002/what-is-the-difference-between-
     * 茎茶 (Kukicha): blend made of stems, stalks, and twigs (80°C, 40sec to 1min, 4 teaspoons per litre)
     * 抹茶 (Matcha): mentioned above
     * 玉露 (Gyokuro): grown under the shade rather than the full sun since the more sun, the more Catechin (bitter)
+* aromatized tea: additional flavors, but basically loses its ability of being brewed more than once
+
+# showing emphasis with 是…的 (中文)
+* encapsulate the part to be stressed with 是…的, e.g. 我(是)來台北找朋友的｡ (I came *to Taipei* to visit a friend.)
+* in positive sentences 是 may be omitted
+* only for events in the past
+
+# $\{x : |x|_i<\varepsilon, i\in I\}$ does not have to be an open set
+* take product topology (cylinder sets $\{x : |x|_i<\varepsilon, i\in J\}$ for $J$ being a finite subset of $I$ are a neighbourhood basis of $0$)
+* if $I$ is not finite, no element in the neighbourhood basis is contained in the set in the heading (if the norms $|\cdot|_i$ do not trivially depend on each other) → it is not an open set
+* examples: locally convex spaces in PDEs
