@@ -45,6 +45,11 @@ I do not quite understand how this motivates the use of filters(/kernels) acting
 	* using the above idea one can generalize Fourier transforms not only to higher dimensional setting and manifolds, but also to graph settings (see graph Laplacian)
 * translation = phase change (think of a shift in 1D and what this does to the coefficients of a Fourier _series_)
   * in a space-time metric (having signature 1,1,1,-1) we can “place” a particle at some point in space-time by multiplying the creation operator with some exponential in the right basis (i.e. the one of the Fourier transform) where the spatial part has the inverse sign of the time part because of this metric
+* smoothness of the original function corresponds to decay in the Fourier domain (and vice versa), which can be made precise by the following statement about a random variable’s characteristic function (which is pretty much it’s Fourier transform)
+  * $µ({x: |x|≥2/u})≤1/u \int_{-u}^u (1-\hat µ(t))dt$
+  * in particular gives the following implication (in the appropriate setting): “characteristic function continuous in 0” → “measure is tight” (where tightness is useful since it enables application of Helly’s selection theorem, which is more or less the Banach-Alaoglu theorem for probability measures (latter would give weak-* convergence for signed, unnormed measures)
+* https://terrytao.wordpress.com/2009/04/06/the-fourier-transform/ for a more general take on the subject
+
 
 # Braess’ paradox (http://ist.ac.at/fileadmin/user_upload/pdfs/Talks/2016/02/Talk_Timme.pdf)
 * the paradox: given some (directed) graph with a flow (e.g. traffic network) removing edges could improve the “overall situation” (e.g. on average you do not drive as long as before if a street is closed)
@@ -198,3 +203,44 @@ http://cooking.stackexchange.com/questions/26002/what-is-the-difference-between-
 * take product topology (cylinder sets $\{x : |x|_i<\varepsilon, i\in J\}$ for $J$ being a finite subset of $I$ are a neighbourhood basis of $0$)
 * if $I$ is not finite, no element in the neighbourhood basis is contained in the set in the heading (if the norms $|\cdot|_i$ do not trivially depend on each other) → it is not an open set
 * examples: locally convex spaces in PDEs
+
+# marking direct objects with 把 (中文)
+* used like [subject]把\[object\][transitive verb]
+* e.g. 他把我的杯子打破了｡ (He broke my cup.)
+
+# how to get compact sets in non Euclidean settings
+* (one) idea: given some compact inclusion $i$ of space $X$ into $Y$, find some bounded set $B\subset X$ and consider $i(B)$
+* this is useful for locally convex spaces of all sorts and works well with machinery like the Rellich–Kondrachov theorem
+
+# exp of involutions
+* for any involution $a:a^2=I$, where $I$ is the identity, one has $exp(ca)=cosh(c)+a sinh(c)$ for scalar $c$, which can be seen by looking at the power series
+* can also be used for sin/cos with exp=i*sin+cos
+* can also be written as $cosh(c)(1+a tanh(c))$ which can be seen as “low temperature expansion” (think about $c$ as some temperature close to zero or more mathematically as some small $\vareps>0$)
+
+# geometric interpretation of the (conditional) expectation
+* introduce conditional expectation $\mathbb E[X|\mathcal G]$ as follows:
+  * let $X$ be an integrable random variable on some probability space $(\Omega,\mathcal A, P)$ 
+  * let $\mathcal G\subset\mathcal A$ be a sub-$\sigma$-algebra
+  * conditional expectation of $X$ given $\mathcal G$, $\mathbb E[X|\mathcal G]$ is *any* random variable $Y$ s.t.
+    * $Y$ is $\mathcal G$-measurable
+    * $\forall A\in\mathcal G: \mathbb E[X\bf 1_A]=\mathbb E[Y\bf 1_A]$
+* it can be seen that such a $Y$ exists and, up to $P$-null equivalence, is uniquely determined by those conditions
+* moreover we have all the ``typical’’ properties of expectations like
+  * positivity: $X\geq 0$ implies $\mathbb E[X|\mathcal G]\geq 0$ $P$-a.s.
+  * linearity
+  * monotonicity
+  * Jensen’s inequality: $\phi(\mathbb E[X|\mathcal G])\leq\mathbb E[\phi(X)|\mathcal G]$, $P$-a.s. for $\phi$ convex and $X$ s.t. $\mathbb E|X|<\infty$, $\mathbb E|\phi(X)|<\infty$
+  * importantly: $X$ being $\mathcal G$-measurable, ($\mathbb E|X|,\mathbb E|Y|<\infty$) implies $\mathbb E[XY|\mathcal G]=X\mathbb E[Y|\mathcal G]$, $P$-a.s., which, after identifying the deterministic ``random’’ variable $X(\omega)=1 \forall\omega$ with $1\in\mathbb R$, gives the second axiom for an expectation in terms of free probability, i.e. $\mathbb E[1|\mathcal G]=1$ (the first one being linearity)
+* one interpretation of this conditional expectation is a geometric one which can be made precise under suitable technical assumptions ($X\in L^2(\Omega,\mathcal A,P)$): $\mathbb E[X\mathcal G]$ is the orthogonal projection of $X$ from $L^2(\Omega,\mathcal A,P)$ on $L^2(\Omega,\mathcal G,P)$
+* to put this in words: start with some random variable (/function of degrees of freedom determined by $\mathcal A$) $X$, then find the function $\tilde X$ in the space of functions with fewer degrees of freedom (i.e. those given by $\mathcal G$ which has to be a subset of $\mathcal A$) that is ``closest’’ to the original one
+* to illustrate what is meant by ``degrees of freedom’’ it is instructive to look at the example $\mathcal G=\{\emptyset,\Omega\}$; to be $\mathcal G$ measurable now means that the pre-image of every open set in the domain of $X$ has to be an element of $\mathcal G$, which, for this $\mathcal G$, implies that there are only constant functions - the second property in the definition now gives that this constant value has to be the classical expectation
+* conversely, if we take a bigger $\sigma$-algebra, we give ourselves more degrees of freedom for $\tilde X$ and can, in a sense stay closer to the original $X$, which, from a probabilistic point of view, just means that more randomness is retained - so if you think of some filtration, encoding e.g. the ``knowledge’’ after flipping a coin for the $n$-th time, and the random variables $S_n=X_1+\dots+X_n$ being the sum of all outcomes up to the $n$-th flip, conditioning on the first element of the filtration (i.e. the $\sigma$-algebra $\mathcal G_1=\sigma(\{(0,\{0,1\},\{0,1\},\dots),(1,\{0,1\},\{0,1\},\dots)\})$) just means that $X_1$ is measurable, so $\mathbb E[X_1+X_2+\dots+X_n|\mathcal G_1]=\mathbb E[X_1|\mathcal G_1]+\mathbb E[X_2+\dots+X_n|\mathcal G_1]$ by linearity and $E[X_1|\mathcal G_1]$ simplifies to $X_1$, whereas $\mathbb E[X_2+\dots+X_n|\mathcal G_1]$ simply becomes the usual expectation $1/2$
+
+# when are Chernoff bounds sharp?
+* Chernoff-type bounds are something of the form $P(X\geq a)\leq\mathbb E[e^{tX}]/e^{ta}\forall t>0$
+* this can easily be seen by writing $P(X\geq a)\leq P(e^{tX}\geq e^{ta})$ and applying Markov’s inequality
+* a geometric interpretation:
+  * write the probability of some event $A$ as expectation of its indicator function $\bf 1_A$
+  * bounding the probability of $X\geq a$ with $e^{tX}\geq e^{ta}$ should be thought of as some exponential function touching the outer left part of the indicator function - which is, a priori, obviously not a bound that one expects to be sharp
+* in the proof of Cramer’s theorem (LDP), however, we only look at random variables that are ``exponentially’’ concentrated around their mean (that’s why we need large deviations after all), so the intuition is that the Chernoff bound is sharp since the whole mass is concentrated just around the point where the exponential function touches the indicator function
+
