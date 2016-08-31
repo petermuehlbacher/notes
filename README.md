@@ -244,3 +244,37 @@ http://cooking.stackexchange.com/questions/26002/what-is-the-difference-between-
   * bounding the probability of $X\geq a$ with $e^{tX}\geq e^{ta}$ should be thought of as some exponential function touching the outer left part of the indicator function - which is, a priori, obviously not a bound that one expects to be sharp
 * in the proof of Cramer’s theorem (LDP), however, we only look at random variables that are ``exponentially’’ concentrated around their mean (that’s why we need large deviations after all), so the intuition is that the Chernoff bound is sharp since the whole mass is concentrated just around the point where the exponential function touches the indicator function
 
+# existence of LDPs by subadditivity
+* assume π_n is some sequence of events we want to get a LDP for, e.g. π_n = P(S_n≥nu) for some fixed u and S_n being some sum of random variables
+* if we can show that π_{n+m}≥π_n π_m (subadditivity - check this e.g. for sum of independent r.v.), we can transform them to p_n := -ln π_n satisfying p_{n+m}≤p_n p_m and use Fekete’s subadditive lemma (a_n≥0 subadditive → \lim_{n\rightarrow\infty}a_n/n = \inf_{n\geq 1} a_n/n to show that the LDP exists
+
+# basic results from extreme value theory
+* \sup_{n\leq k} X_n ~ \sigma\sqrt{2\ln k}, X_n being Gaussian with variance \sigma
+* fluctuations are of inverse order ~1/(\sigma\sqrt{2\ln k}
+
+# http://www.cs.columbia.edu/cg/pdfs/1180993110-laplacian.pdf
+* paper discussing different variants of discrete Laplacians and their properties like symmetry, positivity, positive definiteness, locality and maximum principles
+* main result: there are graphs that do not admit all those properties simultaneously (argues with dual graphs)
+
+# eigenvalues of the discrete Laplacian (or generally translation invariant and symmetric operators)
+* 1D case: writing out the Laplacian in the standard basis as a matrix it is easy to see that it is a circulant matrix and thus diagonalised by the discrete Fourier transform
+* general case (take 1): see http://mathoverflow.net/a/2829/47059, which basically says that the eigenvectors(/functions) of the Fourier transform (exp) also happen to be eigenvectors(/functions) of the translation operator → diagonalize with DFT to get eigenvalues
+* (slightly less) general case (take 2): write the action of the (discrete) Laplacian on some vector as a convolution → we know that the Fourier transformation turns convolutions into multiplications → integral operator turns into a multiplication operator, i.e. is diagonalized
+* more conrete results on $\mathbb Z$: from general theory about circulant matrices we know that the eigenvalues are just the Fourier transform of one row(/column since it’s symmetric) - since the Laplacian is assumed to be symmetric (i.e. even) the $\sin$ terms vanish and we are left with something of the form $\sum f \times (1-\cos)$ where the sum over ones comes from the main diagonal part of the Laplacian (which is s.t. every rowsum = 0, i.e. the sum over the other entries in the row)
+* on $\mathbb Z^d$ in case of no “diagonal” contributions (i.e. $\Delta f(0,0)$ is some function of $\{(x,y) : x=0 or y=0\}$ one can reduce it to the problem on $\mathbb Z$ by writing $\mathbb Z^d$ as the Cartesian (graph) product of lower dimensional copies, see http://math.stackexchange.com/questions/139735/eigenstructure-of-discrete-laplacian-on-uniform-grid
+* on general graphs (or $\mathbb Z^d$ with “diagonal” contributions) it is better to interpret it as a convolution operator
+
+# Laplace transform
+* superposition of moments → resolvent as a geometric series
+
+# why is red greed color blindness so abundant?
+* since males are much more likely to have it (6% of males vs 0.4% of females), it goes without saying that the following is not the only/“primary” reason for it, but at least it helps to see why red&green are the “problem colors” (as opposed to blue)
+* the mathematical setting:
+  * given some set $I$ of “natural images” (arrays with RGB triples as entries) there are certain patterns $X$ we absolutely have to recognize in order to survive (&recreate)
+  * letting the proportions $r,g,b$ (w.r.t. $r+g+b=1$) of the cells responding to the respective colors vary we get an optimization problem $\min_{p,b}\sum_{i\in I, x\in X}f_{p,b}(i,x)=:\min_{p,b}F(p,b)$, where $f_{p,b}(i,x)$ is a penalty for not recognizing some feature $x$ in the image $i$ given $b$ cells for blue, $p$ for red and $1-p-b$ for green
+  * surprisingly, (according to an informal discussion with Gasper Tkacik iirc) when you run some simulations, the energy landscape F (as a function of $p,b$) has a clear global minimum in terms of $b$ (i.e. $dF/db$ is big), but the derivative w.r.t. $p$ almost vanishes - or in other words: in our world it seems to be very important to get the blue tones correct, but the rest is negligible (or at least it used to be before traffic lights became a thing)
+
+<!-- # random stopping times to get limits of n-th roots of random expressions (and more)
+* 
+* for more fun stuff to do with randomized stopping times (given some time homogeneous Markov chain) see http://arxiv.org/pdf/1407.6831.pdf
+-->
